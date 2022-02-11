@@ -191,7 +191,11 @@ int main(int argc, char **argv)
 
     /* do decompression if -d specified */
     else if (argc == 3) {
-        ret = inf(stdin, stdout);
+        FILE * pfin;
+        FILE * pfout;
+        pfin = fopen(argv[1], "rb");
+        pfout = fopen(argv[2], "wb");
+        ret = inf(pfin, pfout);
         if (ret != Z_OK)
             zerr(ret);
         return ret;
